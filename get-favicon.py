@@ -14,7 +14,10 @@ with open(sys.argv[3] + '/' + sys.argv[2] + '.' + format(icon.format), 'wb') as 
         image.write(chunk)
         
 if format(icon.format) == "ico":
-    subprocess.run(["sudo", "apt-get", "install", "icoutils", "-y"])
+    retval = subprocess.call(["which", "icotool"])
+    if retval != 0:
+    print("icotool not installed!")
+    subprocess.run(["pkexec", "apt-get", "install", "icoutils", "-y"])
     subprocess.run(["icotool", "-x", "-o", sys.argv[3], sys.argv[3]+"/"+sys.argv[2]+".ico"])
     print("converted .ico file to .png for more convenient use in Linux .desktop")
 
