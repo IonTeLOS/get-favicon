@@ -1,10 +1,20 @@
 # get-favicon
-Download a high resolution favicon for any website, easily
+Download a high resolution favicon for any website and get the website's title, easily
 
-Requirements: pip install requests favicon
+Requirements: pip install requests favicon urllib3 bs4
 
-Example how to call this program: python3 get-favicon.py https://debian.org debian-favicon ~/Downloads or using the executable from the Releases section: get-favicon https://debian.org debian-favicon ~/Downloads 
+webapp-helper is a simple command line application to get the favicon and title of any website
 
-Above commands will download a favicon for the website of https://debian.org, the file will be named debian-favicon (+whatever icon extension is downloaded) and the output directory will be the user's Downloads folder. One file of the highest possible resolution is downloaded.
+Here is an example how to call this program: 
 
-Possible output of .ico files is converted to multiple resolution .png files (with the use of icoutils - not included)
+$ webapp-helper https://debian.org debian-favicon ~/Downloads 
+
+The first argument you provide is the queried url, the second argument is used for the image file name and the third is the directory inside which you want your newly created data stored.
+
+Make sure you install package icoutils to be able to convert .ico output files to .png or at least ensure you have pkexec to be prompted about installing icoutils. 
+
+A new directory will be created if the one you choose does not exist. 
+
+To create an executable for webapp-helper create a Python virtual environment with python3 -m venv , activate it, install previously mentioned modules plus pyinstaller inside the venv and then run pyinstaller --onefile webapp-helper.py 
+
+This is a helper script to support webapp creation and is put together by Ion@TeLOS <teloslinux@protonmail.com>
